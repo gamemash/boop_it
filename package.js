@@ -1,5 +1,5 @@
 {
-  "name": "bopit",
+  "name": "boopit",
   "version": "0.0.1",
   "description": "A rhythm game",
   "main": "index.js",
