@@ -39,7 +39,9 @@ var keys = new Howl({
 });
 
 // bass.play();
-beat1.play();
+beat1.rate(1.0);
+beepboop.rate(1.0);
+// beat1.play();
 beepboop.volume(0.1);
 // beepboop.play();
 guitar.volume(0.9);
@@ -62,6 +64,8 @@ draw();
 
 window.buttonDown = function() {
   beepboop.play();
+  beat1.rate(beat1.rate() + 0.05);
+  beepboop.rate(beat1.rate() + 0.05);
 }
 
 window.buttonUp = function() {

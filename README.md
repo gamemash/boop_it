@@ -1,19 +1,10 @@
-Clone this repo to get started quickly with all the folders and stuff that you like to have.
-
-```
-git clone git@github.com:gamemash/skeleton.git project_name
-```
-
---------------------------------------------------------------
-
-Project Name
+Boop It
 ------------
 
-This is a skeleton for javascript projects.
+This is going to be a rhythm game kind of like Bop It.
 
 
 ### About
-
 
 `src` folder contains all the source code
 `public` folder contains the final build assets
