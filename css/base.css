@@ -7,5 +7,48 @@ a,hr{padding:0}a,button,input[type=button],input[type=file],input[type=submit],l
   /* background-color: #f00; */
   font-size:  40px;
   color:  #777;
-  transition: all 0.03s;
+  transform: rotate(-7deg);
+  transition: all 0.02s;
+}
+
+.beat1 {
+  color:  #f00;
+  transform: rotate(7deg);
+}
+
+.beat2 {
+  color: #00f;
+}
+
+.beat3 {
+  color:  #0f0;
+  transform: rotate(7deg);
+}
+
+.beat4 {
+  color: #00f;
+}
+
+.beat5 {
+  color:  #f00;
+  transform: rotate(7deg);
+}
+
+.beat6 {
+  color: #00f;
+}
+
+.beat7 {
+  color:  #ff0;
+  transform: rotate(7deg);
+}
+
+.beat8{
+  color:  #0ff;
+}
+
+
+#game {
+  text-align:  center;
+  height:  200px;
 }
