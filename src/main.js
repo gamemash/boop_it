@@ -1,73 +1,48 @@
 "use strict";
-require('./vendor/howler.js');
+var Howl = require('howler').Howl;
+var Song = require('./song.js');
+var _ = require('underscore');
 
 
-
-var bass = new Howl({
-  src: ['./sounds/bass.wav'],
-  loop: true
-});
-
-var beat1 = new Howl({
-  src: ['./sounds/beat1.wav'],
-  loop: true
-});
-
-var beat2 = new Howl({
-  src: ['./sounds/beat2.wav'],
-  loop: true
-});
-
-var beat2 = new Howl({
-  src: ['./sounds/beat2.wav'],
-  loop: true
-});
-
-var beepboop = new Howl({
-  src: ['./sounds/beepboop.wav'],
-  loop: true
-});
-
-var guitar = new Howl({
-  src: ['./sounds/guitar.wav'],
-  loop: true
-});
-
-var keys = new Howl({
-  src: ['./sounds/keys.wav'],
-  loop: true
-});
-
-// bass.play();
-beat1.rate(1.0);
-beepboop.rate(1.0);
-// beat1.play();
-beepboop.volume(0.1);
-// beepboop.play();
-guitar.volume(0.9);
-// guitar.play();
-// keys.play();
-
-
-// sounds.beat1.addEventListener('ended', function() {
-//   this.currentTime = 0;
-//   this.play();
-// }, false);
+var currentTime; // The current song time. A number between 0 and 4.
+var n = 0; // Frame counter
 
 function draw() {
   requestAnimationFrame(draw);
-  var currentTime = beat1.seek();
-  beepboop.seek(currentTime);
+  // process1_60();
+  currentTime = Song.currentTime();
+
   document.getElementById("currentTime").innerHTML = currentTime;
-}
-draw();
 
-window.buttonDown = function() {
-  beepboop.play();
-  beat1.rate(beat1.rate() + 0.05);
-  beepboop.rate(beat1.rate() + 0.05);
+  if (currentTime > 0 && currentTime < 0.02) { beat(1); }
+  if (currentTime > 0.5 && currentTime < 0.52) { beat(2); }
+  if (currentTime > 1.00 && currentTime < 1.02) { beat(3); }
+  if (currentTime > 1.5 && currentTime < 1.52) { beat(4); }
+  if (currentTime > 2.00 && currentTime < 2.02) { beat(5); }
+  if (currentTime > 2.5 && currentTime < 2.52) { beat(7); }
+  if (currentTime > 3.00 && currentTime < 3.02) { beat(7); }
+  if (currentTime > 3.5 && currentTime < 3.52) { beat(8); }
 }
 
-window.buttonUp = function() {
-  beepboop.stop();
+function beat() {
+  var beatResponsiveElements = document.getElementsByClassName("beatResponsive");
+
+  _.each(beatResponsiveElements, (element) => {
+    console.log(element);
+    element.className += " beat";
+  });
+
+  setTimeout(function() {
+    _.each(beatResponsiveElements, (element) => {
+      element.className = "beatResponsive";
+    });
+  }, 200);
 }
+
+function init() {
+  // Start the game
+  Song.play();
+  draw();
+}
+
+init();

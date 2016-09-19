@@ -9,6 +9,7 @@
   "author": "Oliver Ponder",
   "license": "MIT",
   "dependencies": {
-
+    "howler": "^2.0.0",
+    "underscore": "^1.8.3"
   }
 }
