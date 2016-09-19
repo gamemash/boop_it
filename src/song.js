@@ -18,9 +18,16 @@ _.each(soundLabels, (sound) => {
   });
 });
 
+var rate = 1;
+
 var Song = {
   play: function() {
     sounds.beat2.play();
+  },
+
+  rateUp: function(rateIncrement) {
+    rate += 0.01 || rateIncrement;
+    sounds.beat2.rate(rate);
   },
 
   currentTime: function() {

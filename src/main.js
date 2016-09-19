@@ -19,17 +19,17 @@ function draw() {
   if (currentTime > 1.00 && currentTime < 1.02) { beat(3); }
   if (currentTime > 1.5 && currentTime < 1.52) { beat(4); }
   if (currentTime > 2.00 && currentTime < 2.02) { beat(5); }
-  if (currentTime > 2.5 && currentTime < 2.52) { beat(7); }
+  if (currentTime > 2.5 && currentTime < 2.52) { beat(6); }
   if (currentTime > 3.00 && currentTime < 3.02) { beat(7); }
   if (currentTime > 3.5 && currentTime < 3.52) { beat(8); }
 }
 
-function beat() {
+function beat(n) {
+  console.log(n);
   var beatResponsiveElements = document.getElementsByClassName("beatResponsive");
 
   _.each(beatResponsiveElements, (element) => {
-    console.log(element);
-    element.className += " beat";
+    element.className += " beat beat" + n;
   });
 
   setTimeout(function() {
@@ -43,6 +43,14 @@ function init() {
   // Start the game
   Song.play();
   draw();
+}
+
+window.buttonDown = function() {
+  Song.rateUp();
+}
+
+window.buttonUp = function() {
+  // Song.rateUp();
 }
 
 init();
