@@ -10,7 +10,7 @@
     <nav class="nav">
       <div class="container">
         <div class="nav-left">
-          <a class="nav-item is-brand" href="#">
+          <a class="nav-item is-brand beatResponsive" href="#">
             Boop It
           </a>
         </div>
@@ -21,7 +21,7 @@
               <span class="icon">
                 <i class="fa fa-github"></i>
               </span>
-              <span>View on Github</span>
+              <span class=" beatResponsive">View on Github</span>
             </a>
           </span>
         </div>
@@ -31,10 +31,17 @@
     <section class="section">
       <div class="container" id="game">
 
-      <h1 id="currentTime">0</h1>
-      <button onMouseDown="buttonDown()" onMouseUp="buttonUp()">FASTER!</button>
+      <div id="activeAction" class="">
+        Boop it to start!
+      </div>
 
-      <div class="beatResponsive">
+      <div id="buttons">
+        <button class="button is-large" onMouseDown="checkAction('boop')" onMouseUp="buttonUp()">Boop</button>
+        <button class="button is-large" onMouseDown="checkAction('froop')" onMouseUp="buttonUp()">Froop</button>
+        <button class="button is-large" onMouseDown="checkAction('shazorp')" onMouseUp="buttonUp()">Shazorp</button>
+      </div>
+
+      <div class="beatResponsive" id="dance">
       Woop
       </div>
 

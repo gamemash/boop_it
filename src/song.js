@@ -22,7 +22,17 @@ var rate = 1;
 
 var Song = {
   play: function() {
+    rate = 1;
+    sounds.beat2.rate(1);
     sounds.beat2.play();
+  },
+
+  stop: function() {
+    sounds.beat2.stop();
+  },
+
+  isPlaying: function() {
+    return sounds.beat2.playing();
   },
 
   rateUp: function(rateIncrement) {

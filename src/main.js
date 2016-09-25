@@ -6,26 +6,32 @@ var _ = require('underscore');
 
 var currentTime; // The current song time. A number between 0 and 4.
 var n = 0; // Frame counter
+var beatInterval = 0.5;
+var songLength = 4;
+var numberOfBeats = 4 / beatInterval;
+var activeAction = undefined;
 
 function draw() {
   requestAnimationFrame(draw);
   // process1_60();
   currentTime = Song.currentTime();
 
-  document.getElementById("currentTime").innerHTML = currentTime;
+  for (var i = 0; i < numberOfBeats; i++) {
+    var beatFactor = (currentTime / beatInterval) % 1;
+    if (beatFactor > 0 && beatFactor < 0.04) { beat(Math.floor(currentTime / beatInterval) + 1 ); }
+  }
+}
 
-  if (currentTime > 0 && currentTime < 0.02) { beat(1); }
-  if (currentTime > 0.5 && currentTime < 0.52) { beat(2); }
-  if (currentTime > 1.00 && currentTime < 1.02) { beat(3); }
-  if (currentTime > 1.5 && currentTime < 1.52) { beat(4); }
-  if (currentTime > 2.00 && currentTime < 2.02) { beat(5); }
-  if (currentTime > 2.5 && currentTime < 2.52) { beat(6); }
-  if (currentTime > 3.00 && currentTime < 3.02) { beat(7); }
-  if (currentTime > 3.5 && currentTime < 3.52) { beat(8); }
+function onABeat() {
+  for (var i = 0; i < numberOfBeats; i++) {
+    var beatFactor = (currentTime / beatInterval) % 1;
+    if (beatFactor > 0 && beatFactor < 0.08) { return true }
+    if (beatFactor > 0.92 && beatFactor < 1.00) { return true }
+  }
+  console.log((currentTime / beatInterval) % 1)
 }
 
 function beat(n) {
-  console.log(n);
   var beatResponsiveElements = document.getElementsByClassName("beatResponsive");
 
   _.each(beatResponsiveElements, (element) => {
@@ -37,11 +43,24 @@ function beat(n) {
       element.className = "beatResponsive";
     });
   }, 200);
+
+  if (n % 4 === 1 && activeAction === undefined) {
+    var actions = ['boop', 'froop', 'shazorp'];
+    activeAction = actions[Math.floor(Math.random() * actions.length)];
+
+    console.log(activeAction);
+    document.getElementById("activeAction").innerHTML = activeAction + " it!";
+  }
+
+  if (n % 4 === 0 && activeAction != undefined) {
+    Song.stop();
+    console.log("YOU LOST");
+  }
 }
 
 function init() {
   // Start the game
-  Song.play();
+  // Song.play();
   draw();
 }
 
@@ -51,6 +70,22 @@ window.buttonDown = function() {
 
 window.buttonUp = function() {
   // Song.rateUp();
+}
+
+window.checkAction = function(action) {
+  if (Song.isPlaying()) {
+    if (activeAction === action) {
+      activeAction = undefined;
+      document.getElementById("activeAction").innerHTML = "";
+      Song.rateUp();
+    } else {
+      Song.stop();
+      console.log("YOU LOST");
+    }
+  } else {
+    activeAction = undefined;
+    Song.play();
+  }
 }
 
 init();
