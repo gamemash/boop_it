@@ -55,6 +55,7 @@ function beat(n) {
   if (n % 4 === 0 && activeAction != undefined) {
     Song.stop();
     console.log("YOU LOST");
+    document.getElementById("activeAction").innerHTML = "YOU LOST! Boop it to try again."
   }
 }
 
@@ -81,6 +82,7 @@ window.checkAction = function(action) {
     } else {
       Song.stop();
       console.log("YOU LOST");
+      document.getElementById("activeAction").innerHTML = "YOU LOST! Boop it to try again."
     }
   } else {
     activeAction = undefined;
