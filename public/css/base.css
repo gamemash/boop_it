@@ -50,7 +50,7 @@ a,hr{padding:0}a,button,input[type=button],input[type=file],input[type=submit],l
 
 #game {
   text-align:  center;
-  height:  200px;
+  /* height:  200px; */
 }
 
 #activeAction {
@@ -60,5 +60,14 @@ a,hr{padding:0}a,button,input[type=button],input[type=file],input[type=submit],l
 
 #buttons {
   margin-top:  10px;
+  margin-bottom:  20px;
+}
+
+#dance {
+  height:  65px;
+}
+
+#score {
+  font-size: 50px;
   margin-bottom:  20px;
 }
