@@ -7,7 +7,8 @@ var sfx = {};
 var actionLabels = [
   "boop_it",
   "klerp_it",
-  "twablang_it"
+  "twablang_it",
+  "you_lost"
 ];
 
 _.each(actionLabels, (sound) => {
@@ -74,6 +75,7 @@ function beat(n) {
   if (n % 4 === 0 && activeAction != undefined) {
     Song.stop();
     console.log("YOU LOST");
+    sfx["you_lost"].play();
     document.getElementById("activeAction").innerHTML = "YOU LOST! Boop it to try again."
   }
 }
@@ -107,6 +109,7 @@ window.checkAction = function(action) {
     } else {
       Song.stop();
       console.log("YOU LOST");
+      sfx["you_lost"].play();
       document.getElementById("activeAction").innerHTML = "YOU LOST! Boop it to try again."
     }
   } else {
